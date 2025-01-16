@@ -10,7 +10,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_key";
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
-
+console.log(req.body)
     // Check if user exists
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -27,10 +27,11 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
     res.status(201).json({ token });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Error registering user" });
   }
 };
-
+ 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
